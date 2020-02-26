@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(main)
 
 set(QMAKE_CXXFLAGS "-std=c++11")
-include_directories(/usr/local/include)
-link_directories(/usr/local/lib)
+include_directories(/usr/local/openblas/include)
+link_directories(/usr/local/openblas/lib)
 
 find_package( OpenCV REQUIRED)
 

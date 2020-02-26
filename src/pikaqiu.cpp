@@ -37,10 +37,11 @@ int _main(int argc, char **argv) {
 
     cerr << "Original size = " << image.rows << "x" << image.cols << endl;
 
-    Size sz = Size(image.cols, image.rows);
+    // Size sz = Size(image.cols, image.rows);
     // Uncomment to resize frame before processing
     // Size sz = Size(1280, 720);
     // Size sz = Size(640, 480);
+    Size sz = Size(1152, 720);
     
     resize(image, image, sz, 0, 0);
 
@@ -49,7 +50,7 @@ int _main(int argc, char **argv) {
     Rect ROI = Rect(0, 0, image.cols, image.rows); // full image
 
     
-    video_writer.open("output_phuongnam.avi", VideoWriter::fourcc('X', 'V', 'I', 'D'),
+    video_writer.open("output_faces.avi", VideoWriter::fourcc('X', 'V', 'I', 'D'),
         cap.get(CAP_PROP_FPS), image(ROI).size());
     
 
@@ -106,21 +107,22 @@ int _main(int argc, char **argv) {
             
             for (TrackingBox it : tracking_results) {
                 rectangle(image, Point(it.box.y, it.box.x), Point(it.box.height, it.box.width), sorter.randColor[it.id % 20], 2,8,0);
+                // void rectangle(Mat& img, Point pt1, Point pt2, const Scalar& color, int thickness=1, int lineType=8, int shift=0)
                 Mat face_photo = image(Rect(it.box.y, it.box.x, it.box.height - it.box.y, it.box.width - it.box.x));
                 //resize(face_photo, face_photo, Size(0, 0), 2, 2);
                 
                 //imshow(file_name, face_photo);
                 // Uncomment to enable writing output image
-                //string file_name = string("./img_out_phuongnam/") + to_string(it.id) + "_" + to_string(++id_count[it.id]) + ".png";
-                //imwrite(file_name, face_photo, compression_params);
+                string file_name = string("./img_out_faces/") + to_string(it.id) + "_" + to_string(++id_count[it.id]) + ".png";
+                imwrite(file_name, face_photo, compression_params);
             }
 
             draw_5_points(image, boxes);
 
-            imshow("result", image);
+            // imshow("result", image);
 
             // Uncomment to write video output
-            // video_writer << image;
+            video_writer << image;
 
             if (waitKey(1) >= 0) break;
              

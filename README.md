@@ -45,3 +45,6 @@ make
 there is binary packages of openblas for windows, you just need download it   
 But you should to be careful, if you download the 64bit ,you need configure    
 the opencv and vs project environment with 64bit, don't choose x86
+
+
+/usr/local/openblas

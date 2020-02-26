@@ -1,0 +1,31 @@
+docker run --gpus all -it --rm -v $(pwd):/mtcnn-light-with-tracking -v /home/zili/data:/ziliData -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE pengzili/caffe1opencv411cuda101:latest bash
+
+
+
+
+sed -i s@/archive.ubuntu.com/@/mirrors.tuna.tsinghua.edu.cn/@g /etc/apt/sources.list \
+        && apt-get update \
+        && apt-get install -y libglib2.0-dev libsm6 libxrender1 libxext-dev
+
+
+
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+pip install scipy pillow opencv-python
+
+
+
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+
+Ubuntu下使用VS Code构建CMake工程
+https://blog.csdn.net/orange_littlegirl/article/details/88397361
+
+在.vscode文件夹中添加
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
+
+ctrl+shift+B执行编译
